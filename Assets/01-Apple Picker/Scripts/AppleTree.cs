@@ -19,7 +19,10 @@ public class AppleTree : MonoBehaviour
     public float chanceToChangeDirection;
 
     // Rate at which Apples with instantiate
-    public float secondsBetweenAppleDrop;
+ 
+    private float secondsBetweenAppleDrop;
+
+    // public float secondsBetweenAppleDrop;
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,7 @@ public class AppleTree : MonoBehaviour
     void DropApple()
     {
 
+        secondsBetweenAppleDrop = Random.Range(1f, 10f);
         GameObject apple = Instantiate(applePrefab) as GameObject;
         apple.transform.position = transform.position;
         Invoke( "DropApple", secondsBetweenAppleDrop );
