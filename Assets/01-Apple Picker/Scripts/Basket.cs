@@ -1,13 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Basket : MonoBehaviour
 {
+
+    public TextMeshProUGUI scoreGT;
+
+
     // Start is called before the first frame update
     void Start()
     {
         
+        // Find a reference to the ScoreCounter GameObject
+        GameObject scoreGO = GameObject.Find("ScoreCounter");
+        
+        // Get the GUIText Component of that GameObject
+        scoreGT = scoreGO.GetComponent<TextMeshProUGUI>();
+
+        // Set the starting number of points to 0
+        scoreGT.text = "0"; 
+
     }
 
     // Update is called once per frame
@@ -38,6 +52,15 @@ public class Basket : MonoBehaviour
         if(collidedWith.tag == "Apple") {
             Destroy(collidedWith);
         }
+
+        // Parse the test of the scoreGT into an int
+        int score = int.Parse(scoreGT.text);
+
+        // Add points for catching the apple
+        score += 100;
+
+        // Convert the score back to a string and display it
+        scoreGT.text = score.ToString();
 
     }
 }
