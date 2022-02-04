@@ -38,7 +38,7 @@ public class AppleTree : MonoBehaviour
     void DropApple()
     {
 
-        secondsBetweenAppleDrop = Random.Range(1f, 10f);
+        secondsBetweenAppleDrop = Random.Range(0.1f, 3.0f);
         GameObject apple = Instantiate(applePrefab) as GameObject;
         apple.transform.position = transform.position;
         Invoke( "DropApple", secondsBetweenAppleDrop );
