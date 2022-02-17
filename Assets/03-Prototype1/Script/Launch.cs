@@ -5,13 +5,21 @@ using UnityEngine;
 public class Launch : MonoBehaviour
 {
 
+    [Header("Set in Inspector")]
+    public GameObject prefabRocket;
+
+    [Header("Set Dynamically")]
     public GameObject launchPoint;
+    public Vector3 launchPos;
+    public GameObject rocket;
+    public bool aimingMode;
 
     void Awake()
     {
         Transform launchPointTrans = transform.Find("LaunchPoint");
         launchPoint = launchPointTrans.gameObject;
         launchPoint.SetActive(false);
+        launchPos = launchPointTrans.position;
     }
 
     void OnMouseEnter()
@@ -24,6 +32,14 @@ public class Launch : MonoBehaviour
     {
         // print("Launch:OnMouseExit()");
         launchPoint.SetActive(false);
+    }
+
+    void OnMouseDown()
+    {
+        aimingMode = true;
+        rocket = Instantiate(prefabRocket) as GameObject;
+        rocket.transform.position = launchPos;
+        rocket.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     // Start is called before the first frame update
