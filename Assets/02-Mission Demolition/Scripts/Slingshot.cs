@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
+    
+    [Header("Set in Inspector")]
+    public GameObject prefabProjectile;
 
-    // fields set in the Unity Inspector pane
-    public GameObject prefabProjectile; 
-    public bool ____________;
-    // fields set dynamically
+    [Header("Set Dynamically")]
     public GameObject launchPoint;
     public Vector3 launchPos;
     public GameObject projectile;
     public bool aimingMode;
     
+
     void Awake()
     {
         Transform launchPointTrans = transform.Find("LaunchPoint");
@@ -42,6 +43,8 @@ public class Slingshot : MonoBehaviour
         projectile = Instantiate(prefabProjectile) as GameObject;
         // start it at launchpoint
         projectile.transform.position = launchPos;
+        // set it to isKinematic for now
+        projectile.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     // Start is called before the first frame update
