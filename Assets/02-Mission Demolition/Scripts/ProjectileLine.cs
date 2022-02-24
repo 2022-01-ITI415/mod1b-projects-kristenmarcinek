@@ -99,12 +99,11 @@ public class ProjectileLine : MonoBehaviour
             } else {
                 return;
             }
-
-            // if there is a poi, it's loc is added every FixedUpdate
-            AddPoint();
-            if(FollowCam.POI == null) {
-                poi = null;
-            }
+        }
+        // if there is a poi, it's loc is added every FixedUpdate
+        AddPoint();
+        if(FollowCam.POI == null) {
+            poi = null;
         }
     }
 
