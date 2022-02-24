@@ -67,6 +67,12 @@ public class ProjectileLine : MonoBehaviour
             line.SetPosition(1, points[1]);
             // enables the LineRenderer
             line.enabled = true;
+        } else {
+            // normal behavior of adding a point
+            points.Add(pt);
+            line.positionCount = points.Count;
+            line.SetPosition(points.Count - 1, lastPoint);
+            line.enabled = true;
         }
     }
 
