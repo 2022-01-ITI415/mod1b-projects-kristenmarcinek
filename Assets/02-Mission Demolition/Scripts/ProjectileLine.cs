@@ -48,6 +48,60 @@ public class ProjectileLine : MonoBehaviour
         points = new List<Vector3>();
     }
 
+    public void AddPoint()
+    {
+        // this is called to add a point to the line
+        Vector3 pt = _poi.transform.position;
+        if(points.Count > 0 && (pt - lastPoint).magnitude < minDist) {
+            // if the point isn't far enough from the last point, it returns
+            return;
+        }
+
+        if (points.Count == 0) {
+            Vector3 launchPosDiff = pt - Slingshot.LAUNCH_POS;
+            points.Add(pt + launchPosDiff);
+            points.Add(pt);
+            line.positionCount = 2;
+            // sets the 1st two points
+            line.SetPosition(0, points[0]);
+            line.SetPosition(1, points[1]);
+            // enables the LineRenderer
+            line.enabled = true;
+        }
+    }
+
+    public Vector3 lastPoint
+    {
+        get {
+            if(points == null) {
+                return(Vector3.zero);
+            }
+            return(points[points.Count - 1]);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (poi == null) {
+            // if there is no poi, search for one
+            if (FollowCam.POI != null) {
+                if (FollowCam.POI.tag == "Projectile") {
+                    poi = FollowCam.POI;
+                } else {
+                    return;
+                }
+            } else {
+                return;
+            }
+
+            // if there is a poi, it's loc is added every FixedUpdate
+            AddPoint();
+            if(FollowCam.POI == null) {
+                poi = null;
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
