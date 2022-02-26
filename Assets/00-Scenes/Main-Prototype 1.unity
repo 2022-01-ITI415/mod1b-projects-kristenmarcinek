@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabRocket: {fileID: 785345956944363752, guid: 92a0c19df36b9a84793dd5263e011455, type: 3}
-  launchPoint: {fileID: 0}
+  launchPoint: {fileID: 742133767}
   launchPos: {x: 0, y: 0, z: 0}
-  rocket: {fileID: 0}
+  rocket: {fileID: 785345956944363752, guid: 92a0c19df36b9a84793dd5263e011455, type: 3}
   aimingMode: 0
