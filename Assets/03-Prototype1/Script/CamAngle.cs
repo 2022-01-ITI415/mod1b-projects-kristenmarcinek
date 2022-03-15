@@ -35,7 +35,7 @@ public class CamAngle : MonoBehaviour
             // get the position of the poi
             destination = POI.transform.position;
             // if poi is a projectile, check to see if it's at rest
-            if (POI.tag == "Projectile") {
+            if (POI.tag == "Rocket") {
                 // if it is sleeping (that is, not moving)
                 if (POI.GetComponent<Rigidbody>().IsSleeping()) {
                     // return to the default view

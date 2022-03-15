@@ -75,6 +75,7 @@ public class Launcher : MonoBehaviour
             aimingMode = false;
             rocketRigidbody.isKinematic = false;
             rocketRigidbody.velocity = -mouseDelta * velocityMult;
+            CamAngle.POI = rocket;
             rocket = null;
         }
     }
